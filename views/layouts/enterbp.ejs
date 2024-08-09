@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crisis Relief Platform</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-...your-sha512-hash-here..." crossorigin="anonymous" />
+   
+    <script src='https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.css' rel='stylesheet' />
+
+    <style>
+        .carousel .carousel-item {
+        height:87vh; /* Adjust the height as needed (60% of the viewport height in this example) */
+    }
+
+    .carousel-item img {
+        position: absolute;
+        object-fit: cover;
+        top: 0;
+        left: 0;
+        min-height: 60vh; /* Adjust the min-height as needed */
+        width: 100%; /* Ensure the image covers the entire carousel item */
+    }
+    .custom-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Adjust the background color and opacity as needed */
+    color: #fff; /* Set the text color */
+    padding: 10px; /* Adjust padding as needed */
+    text-align: center; /* Center align the text */
+}
+.own{
+    margin-left: 480px;
+}
+
+    </style>
+</head>
+<body class="d-flex flex-column vh-100">
+    <%- include('../partials/entnav') %>
+    <main class="container mt-5">
+        <!-- Include flash -->
+        <%- body %>
+    </main>
+    <%- include('../partials/footer') %>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <script src="/javascripts/validateForms.js"></script>
+    
+<script>
+    
+    
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+      } else { 
+        alert("Geolocation is not supported by this browser.");
+      }
+    }
+    
+    function showPosition(position) {
+     
+      
+
+
+       fetch("/geolocation", {
+     
+     // Adding method type
+     method: "POST",
+      
+     // Adding body or contents to send
+     body: JSON.stringify({
+         latitude:  position.coords.latitude  ,
+         longitude:  position.coords.longitude,
+         
+     }),
+      
+     // Adding headers to the request
+     headers: {
+         "Content-type": "application/json; charset=UTF-8"
+     }
+ })
+  
+ // Converting to JSON
+ .then(response => response.json())
+  
+ // Displaying results to console
+ .then(json => console.log(json));
+    }
+    </script>
+</body>
+</html>

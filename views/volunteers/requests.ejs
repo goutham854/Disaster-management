@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Raise Alerts</title>
+</head>
+<body class="d-flex flex-column vh-100">
+    <main class="container mt-5">
+        <div class="row mb-3">
+            <div class="col-md-12 mb-3">
+              <h4>Victims Requests</h4>
+              <% for(let req of requests){ %>
+            <div class="card text-bg-danger">
+              <div class="card-body">
+                <img src="<%= req.image.url %>" alt="" height="200" width="200">
+                <h5 class="card-title"><%= req.title %></h5>
+                <p class="card-text"><%= req.description %></p>
+                <p class="card-text"><b>Victim Details:</b></p>
+                <p class="card-text">Name:<%= req.username %></p>
+                <p class="card-text">Phone:<%= req.phone %></p>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d60901.46549130607!2d78.38221110000002!3d17.443357099999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTfCsDI2JzM2LjEiTiA3OMKwMjInNTYuMCJF!5e0!3m2!1sen!2sin!4v1708768279690!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <form action="/volunteer/request/<%= req._id %>/address" method="get">
+                <button class="btn btn-success">Address Request</button>
+              </form>
+                
+              </div>
+            </div>
+            <% } %>
+           
+            </div>
+          </div>
+    </main>
+    
+</body>
+</html>

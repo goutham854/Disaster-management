@@ -1,0 +1,15 @@
+<%layout('layouts/boilerplate')%>
+<div class="row mb-3">
+    <div class="col-md-12 mb-3">
+      <h4>Alerts</h4>
+      <% for(let alert of alerts){ %>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title"><%= alert.disaster %></h5>
+          <p class="card-text"><b>Expected date and time:</b><%= alert.expectedDateTime %></p>
+          <p class="card-text">Districts affected:<%= alert.districts %></p>
+          <p class="card-text"><%= alert.description %></p>
+        </div>
+      </div>
+      <% } %>
+     

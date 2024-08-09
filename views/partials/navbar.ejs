@@ -1,0 +1,28 @@
+<nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <i class="fa-solid fa-kit-medical" style="margin-right: 8px;"></i>
+            <span>Crisis Relief Platform</span>
+        </a>        
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link" href="/user/home">Home</a>
+          <a class="nav-link" href="/user/blogs">Blogs</a>
+          <a class="nav-link" href="/user/alerts">Alerts</a>
+          <a class="nav-link" href="/user/news">News Updates</a>
+          <a class="nav-link" href="/user/requests">Help</a>
+          <a class="nav-link" href="/user/weather">Weather Forecast</a>
+          <a class="nav-link" href="/user/donate">Donate</a>
+          <a class="nav-link" href="/user/contacts">Contact Information</a>
+        </div>
+        <div class="navbar-nav log">
+          <% if(currentUser){ %>
+              <a class="nav-link" href="/logout">logout</a>
+            <% } %>
+        </div>
+      </div>
+    </div>
+  </nav>

@@ -1,0 +1,148 @@
+<% layout('layouts/boilerplate')%> 
+
+    <div class="row">
+        <h1 class="text-center">User Registration</h1>
+        <div class="col-6 offset-3">
+            <form action="/userRegistration" method="post" novalidate class="validated-form">
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" id="username" name="username" class="form-control" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" id="email" name="email" class="form-control" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" id="password" name="password" class="form-control" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" class="form-control" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="latitude" class="form-label">Latitude</label>
+                    <input type="text" id="latitude" name="latitude" class="form-control" value=" ">
+                </div>
+                <div class="mb-3">
+                    <label for="longitude" class="form-label">Longitude</label>
+                    <input type="text" id="longitude" name="longitude" class="form-control" value=" ">
+                </div>
+                <button type="button" class="btn btn-primary mb-3" onclick="getLocation()">Use Your Current Location</button>
+                <div class="row">
+                   
+                    <div class="col">
+                        <label for="states">State</label>
+                        <select id="states" name="state" class="form-control mb-3">
+                          <option value="">--select state--</option> 
+                        <option value="Andhra Pradesh">Andhra Pradesh</option>
+                        <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                        <option value="Assam">Assam</option>
+                        <option value="Bihar">Bihar</option>
+                        <option value="Chhattisgarh">Chhattisgarh</option>
+                        <option value="Goa">Goa</option>
+                        <option value="Gujarat">Gujarat</option>
+                        <option value="Haryana">Haryana</option>
+                        <option value="Himachal Pradesh">Himachal Pradesh</option>
+                        <option value="Jharkhand">Jharkhand</option>
+                        <option value="Karnataka">Karnataka</option>
+                        <option value="Kerala">Kerala</option>
+                        <option value="Madhya Pradesh">Madhya Pradesh</option>
+                        <option value="Maharashtra">Maharashtra</option>
+                        <option value="Manipur">Manipur</option>
+                        <option value="Meghalaya">Meghalaya</option>
+                        <option value="Mizoram">Mizoram</option>
+                        <option value="Nagaland">Nagaland</option>
+                        <option value="Odisha">Odisha</option>
+                        <option value="Punjab">Punjab</option>
+                        <option value="Rajasthan">Rajasthan</option>
+                        <option value="Sikkim">Sikkim</option>
+                        <option value="Tamil Nadu">Tamil Nadu</option>
+                        <option value="Telangana">Telangana</option>
+                        <option value="Tripura">Tripura</option>
+                        <option value="Uttar Pradesh">Uttar Pradesh</option>
+                        <option value="Uttarakhand">Uttarakhand</option>
+                        <option value="West Bengal">West Bengal</option>
+                    </select>
+                  </div>
+                  <div class="col">
+                    <label for="districts">Select Districts:</label>
+                    <select id="districts" name="district" class="form-select">
+                        <!-- Add options for all 33 districts -->
+                        <option value="adilabad">Adilabad</option>
+                        <option value="bhadradri">Bhadradri</option>
+                        <option value="hyderabad">Hyderabad</option>
+                        <option value="jagitial">Jagitial</option>
+                        <option value="jangaon">Jangaon</option>
+                        <option value="jayashankar">Jayashankar</option>
+                        <option value="karimnagar">Karimnagar</option>
+                        <option value="khammam">Khammam</option>
+                        <option value="komaram_bheem">Komaram Bheem</option>
+                        <option value="mahabubabad">Mahabubabad</option>
+                        <option value="mahabubnagar">Mahabubnagar</option>
+                        <option value="mancherial">Mancherial</option>
+                        <option value="medak">Medak</option>
+                        <option value="medchal">Medchal</option>
+                        <option value="nagarkurnool">Nagarkurnool</option>
+                        <option value="nalgonda">Nalgonda</option>
+                        <option value="nirmal">Nirmal</option>
+                        <option value="nizamabad">Nizamabad</option>
+                        <option value="peddapalli">Peddapalli</option>
+                        <option value="rajanna_sircilla">Rajanna Sircilla</option>
+                        <option value="ranga_reddy">Ranga Reddy</option>
+                        <option value="sangareddy">Sangareddy</option>
+                        <option value="siddipet">Siddipet</option>
+                        <option value="suryapet">Suryapet</option>
+                        <option value="vikarabad">Vikarabad</option>
+                        <option value="wanaparthy">Wanaparthy</option>
+                        <option value="warangal_rural">Warangal Rural</option>
+                        <option value="warangal_urban">Warangal Urban</option>
+                        <option value="yadadri">Yadadri</option>
+                    </select>
+                  </div>
+                  <div class="col">
+                    <div class="mb-3">
+                        <label for="postalcode" class="form-label">Zipcode</label>
+                        <input type="text" id="postalcode" name="postalCode" class="form-control">
+                    </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-success">Sign Up</button>
+                </div>
+            </form>
+            <p>For Volunteer Registration <a href="/volunteer/signup">Click here</a></p>
+        </div>
+    </div>
+
+    <script>
+        const latitude = document.getElementById("latitude");
+        const longitude = document.getElementById("longitude");
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                addressInput.value = "Geolocation is not supported by this browser.";
+            }
+        }
+
+        function showPosition(position) {
+            const lat = position.coords.latitude;
+            const long = position.coords.longitude;
+            // addressInput.value = Latitude: ${latitude}, Longitude: ${longitude};
+            latitude.value=`${lat}`;
+            longitude.value=`${long}`;
+        }
+    </script>

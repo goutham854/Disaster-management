@@ -1,0 +1,165 @@
+<%layout('layouts/enterbp')%>
+<div class="row">
+    <h1 class="text-center">Donate</h1>
+    <div class="col-6 offset-3">
+        <form action="/donations" method="post" novalidate class="validated-form">
+            <!-- ... Other form fields ... -->
+            <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" id="name" name="donate[name]" class="form-control" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="phone" class="form-label">Phone</label>
+                <input type="tel" id="phone" name="donate[phone]" class="form-control" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" id="email" name="donate[email]" class="form-control" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="category" class="form-label">Type of Donation</label>
+                <select class="form-select" id="category" name="donate[category]">
+                    <option value="money">Money</option>
+                    <option value="food">Food</option>
+                    <option value="clothes">Clothes</option>
+                    <option value="medicine">Medicine</option>
+                    <option value="water">Water</option>
+                </select>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="item" class="form-label">Item Name</label>
+                <input type="text" id="item" name="donate[itemName]" class="form-control" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                    <label for="quantity" class="form-label">Quantity/Amount</label>
+                    <input type="number" id="quantity" name="donate[quantity]" class="form-control" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="quantity" class="form-label">Quantity/Amount</label>
+                <input type="date" id="quantity" name="donate[expiryDate]" class="form-control" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+            <div class="mb-3">
+                <label for="address" class="form-label">Address</label>
+                <input type="text" id="address" name="donate[address]" class="form-control" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="district" class="form-label">District</label>
+                <select class="form-select" id="district" name="donate[district]" onchange="updateCollectorAddress()">
+                    <option value="adilabad">Adilabad</option>
+                    <option value="bhadradri">Bhadradri</option>
+                    <option value="hyderabad">Hyderabad</option>
+                    <option value="jagtial">Jagtial</option>
+                    <option value="jangaon">Jangaon</option>
+                    <option value="jayashankar">Jayashankar Bhupalpally</option>
+                    <option value="jeevitha">Jogulamba Gadwal (Jeevitha)</option>
+                    <option value="kamareddy">Kamareddy</option>
+                    <option value="karimnagar">Karimnagar</option>
+                    <option value="khammam">Khammam</option>
+                    <option value="komaram">Komaram Bheem Asifabad</option>
+                    <option value="mahabubabad">Mahabubabad</option>
+                    <option value="mahabubnagar">Mahabubnagar</option>
+                    <option value="mancherial">Mancherial</option>
+                    <option value="medak">Medak</option>
+                    <option value="medchal">Medchal–Malkajgiri</option>
+                    <option value="nagarkurnool">Nagarkurnool</option>
+                    <option value="nalgonda">Nalgonda</option>
+                    <option value="nirmal">Nirmal</option>
+                    <option value="nizamabad">Nizamabad</option>
+                    <option value="peddapalli">Peddapalli</option>
+                    <option value="rajanna">Rajanna Sircilla</option>
+                    <option value="rangareddy">Rangareddy</option>
+                    <option value="sangareddy">Sangareddy</option>
+                    <option value="siddipet">Siddipet</option>
+                    <option value="suryapet">Suryapet</option>
+                    <option value="vikarabad">Vikarabad</option>
+                    <option value="wanaparthy">Wanaparthy</option>
+                    <option value="warangal">Warangal (Rural)</option>
+                    <option value="warangalurban">Warangal (Urban)</option>
+                    <option value="yadadri">Yadadri Bhuvanagiri</option>
+                </select>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="collectorAddress" class="form-label">Address to be Sent</label>
+                <input type="text" id="collectorAddress"  class="form-control" readonly value="Collector Office, Adilabad, Telangana">
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <p class="form-label">Please note the above address for sending donations</p>
+            <div class="mb-3 text-center">
+                <button class="btn btn-success">Donate</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function updateCollectorAddress() {
+        var districtSelect = document.getElementById('district');
+        var collectorAddressInput = document.getElementById('collectorAddress');
+        var districtOfficeAddresses = {
+    'adilabad': 'Collector Office, Adilabad, Telangana',
+    'bhadradri': 'Collector Office, Bhadradri Kothagudem, Telangana',
+    'hyderabad': 'Collector Office, Hyderabad, Telangana',
+    'jagtial': 'Collector Office, Jagtial, Telangana',
+    'jangaon': 'Collector Office, Jangaon, Telangana',
+    'jayashankar': 'Collector Office, Jayashankar Bhupalpally, Telangana',
+    'jeevitha': 'Collector Office, Jogulamba Gadwal (Jeevitha), Telangana',
+    'kamareddy': 'Collector Office, Kamareddy, Telangana',
+    'karimnagar': 'Collector Office, Karimnagar, Telangana',
+    'khammam': 'Collector Office, Khammam, Telangana',
+    'komaram': 'Collector Office, Komaram Bheem Asifabad, Telangana',
+    'mahabubabad': 'Collector Office, Mahabubabad, Telangana',
+    'mahabubnagar': 'Collector Office, Mahabubnagar, Telangana',
+    'mancherial': 'Collector Office, Mancherial, Telangana',
+    'medak': 'Collector Office, Medak, Telangana',
+    'medchal': 'Collector Office, Medchal–Malkajgiri, Telangana',
+    'nagarkurnool': 'Collector Office, Nagarkurnool, Telangana',
+    'nalgonda': 'Collector Office, Nalgonda, Telangana',
+    'nirmal': 'Collector Office, Nirmal, Telangana',
+    'nizamabad': 'Collector Office, Nizamabad, Telangana',
+    'peddapalli': 'Collector Office, Peddapalli, Telangana',
+    'rajanna': 'Collector Office, Rajanna Sircilla, Telangana',
+    'rangareddy': 'Collector Office, Rangareddy, Telangana',
+    'sangareddy': 'Collector Office, Sangareddy, Telangana',
+    'siddipet': 'Collector Office, Siddipet, Telangana',
+    'suryapet': 'Collector Office, Suryapet, Telangana',
+    'vikarabad': 'Collector Office, Vikarabad, Telangana',
+    'wanaparthy': 'Collector Office, Wanaparthy, Telangana',
+    'warangal': 'Collector Office, Warangal (Rural), Telangana',
+    'warangalurban': 'Collector Office, Warangal (Urban), Telangana',
+    'yadadri': 'Collector Office, Yadadri Bhuvanagiri, Telangana'
+};
+
+
+        var selectedDistrict = districtSelect.value;
+        collectorAddressInput.value = districtOfficeAddresses[selectedDistrict] || '';
+    }
+</script>

@@ -1,0 +1,175 @@
+<%layout('layouts/boilerplate')%>
+<div class="row">
+    <h1 class="text-center">Donate</h1>
+    <div class="col-6 offset-3">
+        <form action="/admin/donations/<%= donation._id %>/edit/accept" method="post" novalidate class="validated-form">
+            <!-- ... Other form fields ... -->
+            <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" id="name" name="donate[name]" class="form-control" value="<%= donation.name %>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="phone" class="form-label">Phone</label>
+                <input type="tel" id="phone" name="donate[phone]" class="form-control" value="<%= donation.phone %>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" id="email" name="donate[email]" class="form-control" value="<%= donation.email %>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="category" class="form-label">Type of Donation</label>
+                <select class="form-select" id="category" name="donate[category]" >
+                    <option value="money" <% donation.category==="money" ? selected :'' %>>Money</option>
+                    <option value="food" <% donation.category==="food" ? selected :'' %>>Food</option>
+                    <option value="clothes" <% donation.category==="clothes" ? 'selected' :'' %>>Clothes</option>
+                    <option value="medicine" <% donation.category==="medicine" ? 'selected' :'' %>>Medicine</option>
+                    <option value="water" <% donation.category==="water" ? 'selected' :'' %>>Water</option>
+                </select>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="item" class="form-label">Item Name</label>
+                <input type="text" id="item" name="donate[itemName]" class="form-control" value="<%= donation.itemName %>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                    <label for="quantity" class="form-label">Quantity/Amount</label>
+                    <input type="number" id="quantity" name="donate[quantity]" class="form-control" value="<%= donation.quantity %>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="quantity" class="form-label">Quantity/Amount</label>
+                <input type="date" id="quantity" name="donate[expiryDate]" value="<%= donation.expiryDate %>" class="form-control" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+            <div class="mb-3">
+                <label for="address" class="form-label">Address</label>
+                <input type="text" id="address" name="donate[address]" class="form-control" value="<%= donation.address %>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="address" class="form-label">Resource Center</label>
+                <input type="text" id="address" name="resourceCenter" class="form-control" value="<%= resourceCenter %>" >
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="district" class="form-label">District</label>
+                <select class="form-select" id="district" name="donate[district]" onchange="updateCollectorAddress()" aria-valuetext="<%= donation.district %>">
+                    <option value="adilabad" <% donation.district==="adilabad" ? 'selected' :'' %>>Adilabad</option>
+                    <option value="bhadradri" <% donation.district==="bhadradri" ? 'selected' :'' %>>Bhadradri</option>
+                    <option value="hyderabad" <% donation.district==="hyderabad" ? 'selected' :'' %>>Hyderabad</option>
+                    <option value="jagtial" <% donation.district==="jagtial" ? 'selected' :'' %>>Jagtial</option>
+                    <option value="jangaon" <% donation.district==="jangaon" ? 'selected' :'' %>>Jangaon</option>
+                    <option value="jayashankar" <% donation.district==="jayashankar" ? 'selected' :'' %>>Jayashankar Bhupalpally</option>
+                    <option value="jeevitha" <% donation.district==="jeevitha" ? 'selected' :'' %>>Jogulamba Gadwal (Jeevitha)</option>
+                    <option value="kamareddy" <% donation.district==="kamareddy" ? 'selected' :'' %>>Kamareddy</option>
+                    <option value="karimnagar" <% donation.district==="karimnagar" ? 'selected' :'' %>>Karimnagar</option>
+                    <option value="khammam" <% donation.district==="khammam" ? 'selected' :'' %>>Khammam</option>
+                    <option value="komaram" <% donation.district==="komaram" ? 'selected' :'' %>>Komaram Bheem Asifabad</option>
+                    <option value="mahabubabad" <% donation.district==="mahabubabad" ? 'selected' :'' %>>Mahabubabad</option>
+                    <option value="mahabubnagar" <% donation.district==="mahabubnagar" ? 'selected' :'' %>>Mahabubnagar</option>
+                    <option value="mancherial" <% donation.district==="mancherial" ? 'selected' :'' %>>Mancherial</option>
+                    <option value="medak" <% donation.district==="medak" ? 'selected' :'' %>>Medak</option>
+                    <option value="medchal" <% donation.district==="medchal" ? 'selected' :'' %>>Medchal–Malkajgiri</option>
+                    <option value="nagarkurnool" <% donation.district==="nagarkurnool" ? 'selected' :'' %>>Nagarkurnool</option>
+                    <option value="nalgonda" <% donation.district==="nalgonda" ? 'selected' :'' %>>Nalgonda</option>
+                    <option value="nirmal" <% donation.district==="nirmal" ? 'selected' :'' %>>Nirmal</option>
+                    <option value="nizamabad" <% donation.district==="nizamabad" ? 'selected' :'' %>>Nizamabad</option>
+                    <option value="peddapalli" <% donation.district==="peddapalli" ? 'selected' :'' %>>Peddapalli</option>
+                    <option value="rajanna" <% donation.district==="rajanna" ? 'selected' :'' %>>Rajanna Sircilla</option>
+                    <option value="rangareddy" <% donation.district==="rangareddy" ? 'selected' :'' %>>Rangareddy</option>
+                    <option value="sangareddy" <% donation.ddistrict==="sangareddy" ? 'selected' :'' %>>Sangareddy</option>
+
+                    <option value="siddipet" <% donation.district==="siddipet" ? 'selected' :'' %>>Siddipet</option> 
+                    <option value="suryapet" <% donation.district==="suryapet" ? 'selected' :'' %>>Suryapet</option> 
+                    <option value="vikarabad" <% donation.district==="vikarabad" ? 'selected' :'' %>>Vikarabad</option>
+                     <option value="wanaparthy" <% donation.district==="wanaparthy" ? 'selected' :'' %>>Wanaparthy</option>
+                    <option value="warangal" <% donation.district==="warangal" ? 'selected' :'' %>>Warangal (Rural)</option>
+                    <option value="warangalurban" <% donation.district==="warangalurban" ? 'selected' :'' %>>Warangal (Urban)</option>
+                     <option value="yadadri" <% donation.district==="yadadri" ? 'selected' :'' %>>Yadadri Bhuvanagiri</option> </select> 
+                   
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="collectorAddress" class="form-label">Address to be Sent</label>
+                <input type="text" id="collectorAddress"  class="form-control" readonly value="Collector Office, Adilabad, Telangana">
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <p class="form-label">Please note the above address for sending donations</p>
+            <div class="mb-3 text-center">
+                <button class="btn btn-success">Donate</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function updateCollectorAddress() {
+        var districtSelect = document.getElementById('district');
+        var collectorAddressInput = document.getElementById('collectorAddress');
+        var districtOfficeAddresses = {
+    'adilabad': 'Collector Office, Adilabad, Telangana',
+    'bhadradri': 'Collector Office, Bhadradri Kothagudem, Telangana',
+    'hyderabad': 'Collector Office, Hyderabad, Telangana',
+    'jagtial': 'Collector Office, Jagtial, Telangana',
+    'jangaon': 'Collector Office, Jangaon, Telangana',
+    'jayashankar': 'Collector Office, Jayashankar Bhupalpally, Telangana',
+    'jeevitha': 'Collector Office, Jogulamba Gadwal (Jeevitha), Telangana',
+    'kamareddy': 'Collector Office, Kamareddy, Telangana',
+    'karimnagar': 'Collector Office, Karimnagar, Telangana',
+    'khammam': 'Collector Office, Khammam, Telangana',
+    'komaram': 'Collector Office, Komaram Bheem Asifabad, Telangana',
+    'mahabubabad': 'Collector Office, Mahabubabad, Telangana',
+    'mahabubnagar': 'Collector Office, Mahabubnagar, Telangana',
+    'mancherial': 'Collector Office, Mancherial, Telangana',
+    'medak': 'Collector Office, Medak, Telangana',
+    'medchal': 'Collector Office, Medchal–Malkajgiri, Telangana',
+    'nagarkurnool': 'Collector Office, Nagarkurnool, Telangana',
+    'nalgonda': 'Collector Office, Nalgonda, Telangana',
+    'nirmal': 'Collector Office, Nirmal, Telangana',
+    'nizamabad': 'Collector Office, Nizamabad, Telangana',
+    'peddapalli': 'Collector Office, Peddapalli, Telangana',
+    'rajanna': 'Collector Office, Rajanna Sircilla, Telangana',
+    'rangareddy': 'Collector Office, Rangareddy, Telangana',
+    'sangareddy': 'Collector Office, Sangareddy, Telangana',
+    'siddipet': 'Collector Office, Siddipet, Telangana',
+    'suryapet': 'Collector Office, Suryapet, Telangana',
+    'vikarabad': 'Collector Office, Vikarabad, Telangana',
+    'wanaparthy': 'Collector Office, Wanaparthy, Telangana',
+    'warangal': 'Collector Office, Warangal (Rural), Telangana',
+    'warangalurban': 'Collector Office, Warangal (Urban), Telangana',
+    'yadadri': 'Collector Office, Yadadri Bhuvanagiri, Telangana'
+};
+
+
+        var selectedDistrict = districtSelect.value;
+        collectorAddressInput.value = districtOfficeAddresses[selectedDistrict] || '';
+    }
+</script>

@@ -1,0 +1,48 @@
+<%layout('layouts/boilerplate')%>
+<h1 class="text-center">Request for Help</h1>
+<div class="row mb-3">
+    <div class="col-6 offset-3">
+        <form action="/user/request" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" id="title" name="request[title]" class="form-control" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" id="description" rows="3" name="request[description]"></textarea>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="category" class="form-label">Category</label>
+                <select class="form-select" id="category" name="request[category]">
+                    <option value="food">Food</option>
+                    <option value="clothes">Clothes</option>
+                    <option value="medicine">Medicine</option>
+                    <option value="water">Water</option>
+                </select>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="title" class="form-label">quantity</label>
+                <input type="text" id="title" name="request[quantity]" class="form-control" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <input type="file" class="form-control" name="image" id="" >
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-success">Submit request</button>
+            </div>
+        </form>
+       
+    </div>
+</div>

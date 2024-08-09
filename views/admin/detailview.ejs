@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="/css/dataTables.bootstrap5.min.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <title>Admin dashboard</title>
+  </head>
+  <body>
+    <!-- top navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container-fluid">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#sidebar"aria-controls="offcanvasExample">
+          <span class="navbar-toggler-icon" data-bs-target="#sidebar"></span>
+        </button>
+        <a class="navbar-brand me-auto ms-lg-0 ms-3 text-uppercase fw-bold" href="#">Admin dashboard</a>
+      </div>
+    </nav>
+    <!-- top navigation bar -->
+     <!-- offcanvas -->
+     <div
+     class="offcanvas offcanvas-start sidebar-nav bg-dark"
+     tabindex="-1"
+     id="sidebar"
+   >
+     <div class="offcanvas-body p-0">
+       <nav class="navbar-dark">
+         <ul class="navbar-nav">
+           <li>
+             <a href="/admin/dashboard" class="nav-link px-3 active">
+               <span class="me-2"><i class="bi bi-speedometer2"></i></span>
+               <span>Dashboard</span>
+             </a>
+           </li>
+           <li>
+               <a href="/admin/complaints" class="nav-link px-3 active">
+                 <span class="me-2"><i class="bi bi-speedometer2"></i></span>
+                 <span>Complaints</span>
+               </a>
+           </li>
+           <li>
+               <a href="/admin/volunteers" class="nav-link px-3 active">
+                 <span class="me-2"><i class="bi bi-speedometer2"></i></span>
+                 <span>Volunteers</span>
+               </a>
+           </li>
+           <li>
+               <a href="/admin/donors" class="nav-link px-3 active">
+                 <span class="me-2"><i class="bi bi-speedometer2"></i></span>
+                 <span>Donations</span>
+               </a>
+           </li>
+           <li>
+               <a href="/admin/resources" class="nav-link px-3 active">
+                 <span class="me-2"><i class="bi bi-speedometer2"></i></span>
+                 <span>Resources</span>
+               </a>
+           </li>
+         </ul>
+       </nav>
+     </div>
+   </div>
+   <!-- offcanvas -->
+    <main class="mt-5 pt-3">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <h4>Resources Database</h4>
+          </div>
+        </div>
+
+     
+        <div class="row">
+          <div class="col-md-12 mb-3">
+            <div class="card">
+              <div class="card-header">
+                <span><i class="bi bi-table me-2"></i></span>Resources
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table
+                    id="example"
+                    class="table table-striped data-table"
+                    style="width: 100%"
+                  >
+                    <thead>
+                      <tr>
+                        <th>ItemName</th>
+                        <th>category</th>
+                        <th>Quantity</th>
+                        <th>ExpiryDate</th>
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% for(let food of foods){ %>
+                      <tr>
+                        <td><%= food.itemName %></td>
+                        <td>food</td>
+                        <td><%= food.quantity %></td>
+                        <% const date = new Date(food.expiryDate);
+                        const day = date.getDate();
+                        const month = date.getMonth() + 1; // Note: getMonth() returns a 0-based index, so we add 1 to get the actual month number
+                        const year = date.getFullYear(); %>
+                        <td><%= `${day}-${month}-${year}` %></td>
+                        <td><form action="/<%= resourcecenter._id %>/food/<%= food.itemName %>/delete" method="post"><button class="btn btn-danger">delete</button></form></td>
+                      </tr>
+                      <% } %>
+                      <% for(let medicine of medicines){ %>
+                        <tr>
+                          <td><%= medicine.itemName %></td>
+                          <td>medicine</td>
+                          <td><%= medicine.quantity %></td>
+                          <td><form action="/<%= resourcecenter._id %>/medicine/<%= medicine.itemName %>/delete" method="post"><button class="btn btn-danger">delete</button></form></td>
+                        </tr>
+                        <% } %>
+                        <% for(let water of waters){ %>
+                            <tr>
+                              <td><%= water.itemName %></td>
+                              <td>water</td>
+                              <td><%= water.quantity %></td>
+                              <td><form action="/<%= resourcecenter._id %>/water/<%= water.itemName %>/delete" method="post"><button class="btn btn-danger">delete</button></form></td>
+                            </tr>
+                            <% } %>
+                            <tr>
+                                <td>money</td>
+                                <td>Amount</td>
+                                <td><%= amount %></td>
+                            </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
+    <script src="/js/jquery-3.5.1.js"></script>
+    <script src="/js/jquery.dataTables.min.js"></script>
+    <script src="/js/dataTables.bootstrap5.min.js"></script>
+    <script src="/js/script.js"></script>
+  </body>
+</html>
